@@ -5,9 +5,11 @@ use bevy_asset_loader::AssetLoader;
 pub mod app_state;
 pub mod character;
 pub mod assets;
+pub mod screens;
 
 use app_state::AppState;
-use assets::{AudioAssets, ImageAssets};
+use assets::{AudioAssets, ImageAssets, FontAssets};
+use screens::{LoadingScreen, MainMenuScreen, InGameScreen, PausedScreen};
 
 const APP_NAME: &'static str = "Rumario";
 const VERSION: &'static str = "v0.1";
@@ -27,6 +29,7 @@ fn main() {
         .continue_to_state(AppState::MainMenu)
         .with_collection::<AudioAssets>()
         .with_collection::<ImageAssets>()
+        .with_collection::<FontAssets>()
         .build(&mut app);
 
     app    
@@ -48,7 +51,11 @@ fn main() {
         // Add initial app state
         .add_state(AppState::Loading)
 
-        .add_system(on_tick)
+        // Add plugins for specific app states
+        .add_plugin(LoadingScreen)
+        .add_plugin(MainMenuScreen)
+        .add_plugin(InGameScreen)
+        .add_plugin(PausedScreen)
 
         .run();
 
@@ -62,8 +69,4 @@ fn startup(mut commands: Commands) {
 
     // Create a 2d camera
     commands.spawn_bundle(OrthographicCameraBundle::new_2d());
-}
-
-fn on_tick(app_state: Res<State<AppState>>) {
-    info!("Ticking: {:?}", app_state);
 }

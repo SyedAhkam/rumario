@@ -1,4 +1,4 @@
-use bevy::prelude::*;
+use bevy::{prelude::*, asset};
 use bevy_asset_loader::AssetCollection;
 
 #[derive(AssetCollection)]
@@ -15,4 +15,10 @@ pub struct ImageAssets {
     // pub player: Handle<Image>,
     // #[asset(path = "images/tree.png")]
     // pub tree: Handle<Image>,
+}
+
+#[derive(AssetCollection)]
+pub struct FontAssets {
+    #[asset(path = "fonts/emulogic/emulogic.ttf")]
+    pub emulogic: Handle<Font>
 }
