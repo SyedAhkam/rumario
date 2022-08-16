@@ -1,4 +1,4 @@
-use bevy::{prelude::*, asset};
+use bevy::prelude::*;
 use bevy_asset_loader::AssetCollection;
 
 #[derive(AssetCollection)]
@@ -11,10 +11,9 @@ pub struct AudioAssets {
 
 #[derive(AssetCollection)]
 pub struct ImageAssets {
-    // #[asset(path = "images/player.png")]
-    // pub player: Handle<Image>,
-    // #[asset(path = "images/tree.png")]
-    // pub tree: Handle<Image>,
+    #[asset(path = "images/title_board.png")]
+    pub title_board: Handle<Image>
+
 }
 
 #[derive(AssetCollection)]

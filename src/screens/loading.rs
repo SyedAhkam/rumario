@@ -18,5 +18,5 @@ impl Plugin for LoadingScreen {
 }
 
 fn on_enter() {
-    info!("on_enter loading");
+    info!("Loading assets");
 }
